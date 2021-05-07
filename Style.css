@@ -32,7 +32,9 @@ i{
     height: 280px;
     background-image: url("./image/star.png");
     background-repeat: no-repeat;
-    background-size: auto;
+    /*background-size: auto;*/
+    background-size: 100% 280px;
+
 }
 
 #dataContainer{
