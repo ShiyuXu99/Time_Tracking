@@ -13,6 +13,7 @@ let tasksList = localStorage.getItem('tasksList')
     : [];
 printTasks();
 printPlan();
+printTasks();
 
 
 
@@ -25,7 +26,6 @@ deleteTaskbtn.addEventListener("click",()=>{
     }
 
 })
-printTasks();
 
 for (let i = 0; i < tasksList.length; i++) {
     let btnName = document.getElementById(tasksList[i].btnName);
@@ -33,6 +33,7 @@ for (let i = 0; i < tasksList.length; i++) {
     // btnName.removeAttribute("disabled");
     console.log();
     btnName.addEventListener("click", function () {
+        console.log("here");
         addPlan(btnName, color);
     });
 }
