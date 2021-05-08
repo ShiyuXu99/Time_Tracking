@@ -27,16 +27,6 @@ deleteTaskbtn.addEventListener("click",()=>{
 
 })
 
-for (let i = 0; i < tasksList.length; i++) {
-    let btnName = document.getElementById(tasksList[i].btnName);
-    let color = tasksList[i].color;
-    // btnName.removeAttribute("disabled");
-    console.log();
-    btnName.addEventListener("click", function () {
-        console.log("here");
-        addPlan(btnName, color);
-    });
-}
 
 
 function addTasksName() {
@@ -67,6 +57,10 @@ function printTasks() {
             btn.setAttribute('textContent', tasksList[i].btnName);
             btn.insertBefore(num, btn.childNodes[0]);
             box.appendChild(btn);
+            btn.addEventListener("click", function () {
+                console.log("here");
+                addPlan(btn, tasksList[i].color);
+            });
 
             let deletbtn = document.createElement('button');
             let trash = document.createElement('i');
