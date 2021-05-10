@@ -1,7 +1,8 @@
 const tasks = document.getElementById("tasks");
 const deleteTaskbtn = document.getElementById('deleteTaskbtn');
 const taskContainer = document.getElementById('taskContainer');
-let colorList = [ '#B1BEC4','#F4A9A8','#80959A', '#CE97B0', '#AF9CB8', '#86C0D9', '#E0DAFC', '#62A4EC','#8EACCD','#FCD8DF',];
+colorList = ['#8EACCD','#FCD8DF'];
+// let colorList = [ '#B1BEC4','#F4A9A8','#80959A', '#CE97B0', '#AF9CB8', '#86C0D9', '#E0DAFC', '#62A4EC','#8EACCD','#FCD8DF',];
 
 const today = document.getElementById('Mon');
 
