@@ -39,9 +39,9 @@ i{
 
 #dataContainer{
     display: grid;
-    grid-template-columns: 20% auto 40%;
+    grid-template-columns: 20% auto 30%;
     grid-gap: 20px;
-    margin: 100px;
+    margin: 0px 100px 0px 100px;
 }
 
 .buttonClass{
