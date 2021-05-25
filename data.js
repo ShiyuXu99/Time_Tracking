@@ -2,7 +2,7 @@ let todayData = [];
 let todayCount = [], todayColor = [],todayActivity = [];
 
 for(let i = 0; i < record.length; i++){
-    if(moment().subtract(2, "days").format("MM-DD-YYYY") === record[i].day){
+    if(moment().subtract(1, "days").format("MM-DD-YYYY") === record[i].day){
         todayData = record[i].count;
     }
 }

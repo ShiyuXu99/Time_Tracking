@@ -4,7 +4,14 @@ let weekColor = new Map();
 let activity = [], color = [], num = [];
 
 for(let i = 0; i < record.length; i++){
-    if(moment().subtract(7,'days').isBefore(record[i].day,'days')){
+    let dateTime = record[i].day;
+    let year = "2022";
+
+
+    var res = record[i].day.split("-");
+    let current = moment([res[2], res[0], res[1]])
+
+    if(moment().isBefore(current,'day')){
         weekData.push(record[i].count) ;
     }
 }
