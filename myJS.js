@@ -1,8 +1,12 @@
 const tasks = document.getElementById("tasks");
 const deleteTaskbtn = document.getElementById('deleteTaskbtn');
 const taskContainer = document.getElementById('taskContainer');
-colorList = ['#8EACCD','#FCD8DF'];
-// let colorList = [ '#B1BEC4','#F4A9A8','#80959A', '#CE97B0', '#AF9CB8', '#86C0D9', '#E0DAFC', '#62A4EC','#8EACCD','#FCD8DF',];
+let colorList = localStorage.getItem('colorList')
+    ? JSON.parse(localStorage.getItem('colorList'))
+    :[ '#c1cbd7','#b5c4b1','#8696a7', '#dfd7d7',
+        '#96a48b', '#9ca8b8', '#e0cdcf',
+        '#b7b1a5','#c9c0d3','#7b8b6f',
+        '#a37e7e','#939391'];
 
 const today = document.getElementById('Mon');
 
@@ -34,6 +38,7 @@ function addTasksName() {
     if (event.keyCode === 13) {
         tasksList.push({"btnName": tasks.value, "color": colorList[0]});
         colorList.splice(0, 1);
+        localStorage.setItem("colorList", JSON.stringify(colorList));
         localStorage.setItem("tasksList", JSON.stringify(tasksList));
         printTasks();
     }
@@ -73,8 +78,10 @@ function printTasks() {
 
             deletbtn.addEventListener('click', () => {
                 taskContainer.removeChild(box);
+                colorList.push(tasksList[i].color);
                 tasksList.splice(i,1);
                 console.log(tasksList);
+                localStorage.setItem("colorList", JSON.stringify(colorList));
                 localStorage.setItem("tasksList", JSON.stringify(tasksList));
             })
             taskContainer.appendChild(box);
