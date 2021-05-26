@@ -3,58 +3,62 @@ let weekActivity = new Map();
 let weekColor = new Map();
 let activity = [], color = [], num = [];
 
-for(let i = 0; i < record.length; i++){
-    let dateTime = record[i].day;
-    let year = "2022";
+getDatas();
 
+function getDatas(){
+     weekData = [];
+     weekActivity = new Map();
+     weekColor = new Map();
+     activity = [], color = [], num = [];
 
-    var res = record[i].day.split("-");
-    let current = moment([res[2], res[0], res[1]])
+     let tempRec = JSON.parse(localStorage.getItem('record'));
 
-    if(moment().isBefore(current,'day')){
-        weekData.push(record[i].count) ;
-    }
-}
-console.log(weekData);
+    for(let i = 0; i < tempRec.length; i++){
+        var res = tempRec[i].day.split("-");
+        let current = moment([res[2], res[0], res[1]])
 
-
-
-for(let i = 0; i < weekData.length; i++){
-    for(let j = 0; j < weekData[i].length; j++){
-        if(weekActivity.has(weekData[i][j].activityName)){
-            let num = weekData[i][j].number + weekActivity.get(weekData[i][j].activityName);
-            weekActivity.set(weekData[i][j].activityName,num);
-            continue;
-        }
-        else{
-            weekActivity.set(weekData[i][j].activityName,weekData[i][j].number);
+        if(moment().isBefore(current,'day')){
+            weekData.push(tempRec[i].count) ;
         }
     }
-}
 
-for(let i = 0; i < weekData.length; i++){
-    for(let j = 0; j < weekData[i].length; j++){
-        if(weekColor.has(weekData[i][j].activityName)){
-            continue;
+
+
+    for(let i = 0; i < weekData.length; i++){
+        for(let j = 0; j < weekData[i].length; j++){
+            if(weekActivity.has(weekData[i][j].activityName)){
+                let num = weekData[i][j].number + weekActivity.get(weekData[i][j].activityName);
+                weekActivity.set(weekData[i][j].activityName,num);
+                continue;
+            }
+            else{
+                weekActivity.set(weekData[i][j].activityName,weekData[i][j].number);
+            }
         }
-        else{
-            weekColor.set(weekData[i][j].activityName,weekData[i][j].activityColor);
+    }
+
+    for(let i = 0; i < weekData.length; i++){
+        for(let j = 0; j < weekData[i].length; j++){
+            if(weekColor.has(weekData[i][j].activityName)){
+                continue;
+            }
+            else{
+                weekColor.set(weekData[i][j].activityName,weekData[i][j].activityColor);
+            }
         }
+    }
+
+    activity = Array.from( weekColor.keys() );
+    for(let i = 0; i < activity.length; i++){
+        color.push(weekColor.get(activity[i]));
+    }
+
+    for(let i = 0; i < activity.length; i++){
+        num.push(weekActivity.get(activity[i]));
     }
 }
 
-activity = Array.from( weekColor.keys() );
-for(let i = 0; i < activity.length; i++){
-    color.push(weekColor.get(activity[i]));
-}
-console.log(color);
-
-for(let i = 0; i < activity.length; i++){
-    num.push(weekActivity.get(activity[i]));
-}
-
-
-const dataSet = {
+let dataSet = {
     labels: activity,
     datasets: [{
         label: 'Past Week',
@@ -79,7 +83,26 @@ const configBar = {
 
 let barChart = document.getElementById('weekChart');
 
+
 const weekChart = new Chart(barChart,configBar)
+
+
+function updateChart(){
+    getDatas();
+    dataSet = {
+        labels: activity,
+        datasets: [{
+            label: 'Past Week',
+            data: num,
+            backgroundColor: color,
+            borderColor: color,
+            borderWidth: 1
+        }]
+    };
+    weekChart.data = dataSet;
+
+    weekChart.update();
+}
 
 
 

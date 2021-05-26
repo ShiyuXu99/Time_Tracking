@@ -8,41 +8,40 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/progressbar.js/0.6.1/progressbar.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script defer src = "./myJS.js"></script>
     <script defer src = "./weekData.js"></script>
     <script defer src = "./data.js"></script>
-
-
 </head>
 <body>
 
 <div class="container" id = "container">
+    <div class="progress" id = "progress">
+    </div>
     <div class="row">
-        <div class="col-sm" id = "Mon">
+        <div class="col-sm" id = "today">
         </div>
     </div>
 </div>
 
 
 
+
 <div class="grid-container">
-
     <div id = "taskContainer">
-
     </div>
 
     <div>
         <input type="text" id="tasks" placeholder="添加事件。。">
         <button id = "deleteTaskbtn">删除</button>
-
     </div>
-
 </div>
 
 
 <div id = "dataContainer">
-
+    <div>
+    </div>
         <div >
                 <canvas id = "myChart"></canvas>
         </div>
@@ -51,6 +50,8 @@
         <div class="weekContainer">
                 <canvas id = "weekChart"></canvas>
         </div>
+    <div>
+    </div>
 
 </div>
 

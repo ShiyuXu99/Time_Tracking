@@ -8,7 +8,7 @@ let colorList = localStorage.getItem('colorList')
         '#b7b1a5','#c9c0d3','#7b8b6f',
         '#a37e7e','#939391'];
 
-const today = document.getElementById('Mon');
+const today = document.getElementById('today');
 
 let record = localStorage.getItem('record')
     ? JSON.parse(localStorage.getItem('record'))
@@ -19,6 +19,7 @@ let tasksList = localStorage.getItem('tasksList')
 printTasks();
 printPlan();
 printTasks();
+addProgressBar();
 
 
 
@@ -41,6 +42,7 @@ function addTasksName() {
         localStorage.setItem("colorList", JSON.stringify(colorList));
         localStorage.setItem("tasksList", JSON.stringify(tasksList));
         printTasks();
+        tasks.value ='';
     }
 }
 
@@ -64,7 +66,6 @@ function printTasks() {
             btn.insertBefore(num, btn.childNodes[0]);
             box.appendChild(btn);
             btn.addEventListener("click", function () {
-                console.log("here");
                 addPlan(btn, tasksList[i].color);
             });
 
@@ -80,7 +81,6 @@ function printTasks() {
                 taskContainer.removeChild(box);
                 colorList.push(tasksList[i].color);
                 tasksList.splice(i,1);
-                console.log(tasksList);
                 localStorage.setItem("colorList", JSON.stringify(colorList));
                 localStorage.setItem("tasksList", JSON.stringify(tasksList));
             })
@@ -93,14 +93,6 @@ function printTasks() {
 
 
 
-// function disablebtn(){
-//     for(let i = 0; i < tasksList.length; i++) {
-//         let btnName = document.getElementById(tasksList[i].btnName);
-//         let color = tasksList[i].color;
-//         btnName.setAttribute("disabled", true);
-//         btnName.replaceWith(btnName.cloneNode(true));
-//     }
-// }
 
 function printPlan() {
     if (record.length !== 0) {
@@ -127,7 +119,7 @@ function printPlan() {
 
 function printPlanLogo(input, color) {
     let num = document.createElement('i');
-    num.setAttribute('class', 'fas fa-' + input + ' fa-2x');
+    num.setAttribute('class', 'fas fa-' + input + ' fa-1.5x');
     num.style.color = color;
     today.appendChild(num);
     num.addEventListener('dblclick', function (e) {
@@ -149,6 +141,9 @@ function printPlanLogo(input, color) {
         }
 
         today.removeChild(num);
+        addProgressBar();
+        updateChart();
+
     });
 }
 
@@ -185,6 +180,45 @@ function addPlan(buttonType, color) {
     localStorage.setItem("record", JSON.stringify(record));
     today.innerHTML = '';
     printPlan();
+    addProgressBar();
+    updateChart();
+}
+
+function addProgressBar(){
+    let progress = document.getElementById('progress');
+    progress.innerHTML = "";
+
+    let todayData = [];
+    let todayCount = [], todayColor = [],todayActivity = [];
+
+    let temprecord = JSON.parse(localStorage.getItem('record'));
+
+    for(let i = 0; i < temprecord.length; i++){
+        if(moment().format("MM-DD-YYYY") === temprecord[i].day){
+            todayData = temprecord[i].count;
+        }
+    }
+
+
+
+    for(let i = 0; i < todayData.length; i++){
+        todayCount.push(todayData[i].number);
+        todayColor.push(todayData[i].activityColor);
+        todayActivity.push(todayData[i].activityName);
+    }
+
+
+
+    for(let i = 0; i < todayData.length; i++){
+        let progressElement = document.createElement('div');
+        progressElement.setAttribute('class','progress-bar');
+        let color = "background-color: " + todayData[i].activityColor + " !important;";
+        progressElement.setAttribute("role", 'progressbar');
+        progressElement.setAttribute("style", "width: " + Math.round(todayData[i].number/12*100) + "%;" + color);
+        progressElement.innerHTML = todayData[i].activityName;
+        progress.appendChild(progressElement);
+    }
+
 }
 
 

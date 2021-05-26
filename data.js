@@ -39,7 +39,7 @@ const config = {
 
 let pirChart = document.getElementById('myChart');
 
-var myChart = new Chart(pirChart, config)
+const myChart = new Chart(pirChart, config)
 
 
 
