@@ -5,57 +5,57 @@ let activity = [], color = [], num = [];
 
 getDatas();
 
-function getDatas(){
-     weekData = [];
-     weekActivity = new Map();
-     weekColor = new Map();
-     activity = [], color = [], num = [];
+function getDatas() {
+    weekData = [];
+    weekActivity = new Map();
+    weekColor = new Map();
+    activity = [], color = [], num = [];
 
-     let tempRec = JSON.parse(localStorage.getItem('record'));
+    let tempRec = localStorage.getItem('record')
+        ? JSON.parse(localStorage.getItem('record'))
+        : [];
 
-    for(let i = 0; i < tempRec.length; i++){
+    for (let i = 0; i < tempRec.length; i++) {
         var res = tempRec[i].day.split("-");
         let current = moment([res[2], res[0], res[1]])
 
-        if(moment().isBefore(current,'day')){
-            weekData.push(tempRec[i].count) ;
+        if (moment().isBefore(current, 'day')) {
+            weekData.push(tempRec[i].count);
         }
     }
 
 
-
-    for(let i = 0; i < weekData.length; i++){
-        for(let j = 0; j < weekData[i].length; j++){
-            if(weekActivity.has(weekData[i][j].activityName)){
+    for (let i = 0; i < weekData.length; i++) {
+        for (let j = 0; j < weekData[i].length; j++) {
+            if (weekActivity.has(weekData[i][j].activityName)) {
                 let num = weekData[i][j].number + weekActivity.get(weekData[i][j].activityName);
-                weekActivity.set(weekData[i][j].activityName,num);
+                weekActivity.set(weekData[i][j].activityName, num);
                 continue;
-            }
-            else{
-                weekActivity.set(weekData[i][j].activityName,weekData[i][j].number);
+            } else {
+                weekActivity.set(weekData[i][j].activityName, weekData[i][j].number);
             }
         }
     }
 
-    for(let i = 0; i < weekData.length; i++){
-        for(let j = 0; j < weekData[i].length; j++){
-            if(weekColor.has(weekData[i][j].activityName)){
+    for (let i = 0; i < weekData.length; i++) {
+        for (let j = 0; j < weekData[i].length; j++) {
+            if (weekColor.has(weekData[i][j].activityName)) {
                 continue;
-            }
-            else{
-                weekColor.set(weekData[i][j].activityName,weekData[i][j].activityColor);
+            } else {
+                weekColor.set(weekData[i][j].activityName, weekData[i][j].activityColor);
             }
         }
     }
 
-    activity = Array.from( weekColor.keys() );
-    for(let i = 0; i < activity.length; i++){
+    activity = Array.from(weekColor.keys());
+    for (let i = 0; i < activity.length; i++) {
         color.push(weekColor.get(activity[i]));
     }
 
-    for(let i = 0; i < activity.length; i++){
+    for (let i = 0; i < activity.length; i++) {
         num.push(weekActivity.get(activity[i]));
     }
+
 }
 
 let dataSet = {
@@ -75,7 +75,11 @@ const configBar = {
     options: {
         scales: {
             y: {
-                beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                    min: 0,
+                    stepSize: 0.5,
+                }
             }
         }
     },
@@ -84,10 +88,10 @@ const configBar = {
 let barChart = document.getElementById('weekChart');
 
 
-const weekChart = new Chart(barChart,configBar)
+const weekChart = new Chart(barChart, configBar)
 
 
-function updateChart(){
+function updateChart() {
     getDatas();
     dataSet = {
         labels: activity,
