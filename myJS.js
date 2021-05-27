@@ -93,7 +93,7 @@ function printTasks() {
 
             deletbtn.addEventListener('click', () => {
                 taskContainer.removeChild(box);
-                colorList.push(tasksList[i].color);
+                colorList.unshift(tasksList[i].color);
                 tasksList.splice(i, 1);
                 localStorage.setItem("colorList", JSON.stringify(colorList));
                 localStorage.setItem("tasksList", JSON.stringify(tasksList));
