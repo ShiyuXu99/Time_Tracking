@@ -20,7 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ea7219e-9deb-4556-8928-b214a692a270" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/temp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myJS.js" beforeDir="false" afterPath="$PROJECT_DIR$/myJS.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +59,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/image" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -68,7 +74,10 @@
       <workItem from="1620359810536" duration="987000" />
       <workItem from="1620439127887" duration="546000" />
       <workItem from="1620676934088" duration="196000" />
-      <workItem from="1621961675329" duration="29011000" />
+      <workItem from="1621961675329" duration="30283000" />
+      <workItem from="1630422304961" duration="1001000" />
+      <workItem from="1630423795645" duration="87000" />
+      <workItem from="1630423922368" duration="3017000" />
     </task>
     <servers />
   </component>
@@ -85,5 +94,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

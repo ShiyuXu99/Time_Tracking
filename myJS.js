@@ -31,6 +31,7 @@ function deleteAll() {
         localStorage.setItem("record", JSON.stringify(record));
         addProgressBar();
         updateChart();
+        updateTodayChart()
         printPlan();
     }
 
@@ -159,6 +160,7 @@ function printPlanLogo(input, color) {
         today.removeChild(num);
         addProgressBar();
         updateChart();
+        updateTodayChart()
 
     });
 }
@@ -198,6 +200,7 @@ function addPlan(buttonType, color) {
     printPlan();
     addProgressBar();
     updateChart();
+    updateTodayChart()
 }
 
 function addProgressBar() {
