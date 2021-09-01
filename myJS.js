@@ -27,7 +27,6 @@ function deleteAll() {
 
     if (confirm.toLowerCase() === "yes") {
         record = [];
-        console.log("here");
         localStorage.setItem("record", JSON.stringify(record));
         addProgressBar();
         updateChart();
@@ -117,7 +116,6 @@ function printPlan() {
     for (let i = 0; i < record.length; i++) {
         if (moment().format("MM-DD-YYYY") === record[i].day) temp = record[i].count;
     }
-    console.log(temp);
     for (let i = 0; i < temp.length; i++) {
         let num = Math.floor(temp[i].number);
         let leftOver = temp[i].number % 1;

@@ -16,12 +16,19 @@ function getDatas() {
         : [];
 
     for (let i = 0; i < tempRec.length; i++) {
-        var res = tempRec[i].day.split("-");
-        let current = moment([res[2], res[0], res[1]])
-
-        if (moment().isBefore(current, 'day')) {
-            weekData.push(tempRec[i].count);
+        for(let j = 0; j < 7; j++){
+            if(moment().subtract(j, 'd').format("MM-DD-YYYY") === record[i].day){
+                weekData.push(tempRec[i].count);
+            }
         }
+
+
+        // var res = tempRec[i].day.split("-");
+        // let current = moment([res[2], res[0], res[1]])
+        //
+        // if (moment().isBefore(current, 'day')) {
+        //     weekData.push(tempRec[i].count);
+        // }
     }
 
 

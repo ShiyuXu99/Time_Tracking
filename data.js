@@ -28,10 +28,6 @@ function getTodayData(){
         todayColor.push(tempColor.get(todayActivity[i]))
     }
 
-    console.log(tempCount)
-    console.log(todayActivity)
-    // console.log(todayActivity)
-
 
 }
 
