@@ -18,7 +18,9 @@ function getDatas() {
     for (let i = 0; i < tempRec.length; i++) {
         for(let j = 0; j < 7; j++){
             if(moment().subtract(j, 'd').format("MM-DD-YYYY") === record[i].day){
-                weekData.push(tempRec[i].count);
+                if(moment().subtract(j, 'd').isoWeekday() <= moment().isoWeekday()){
+                    weekData.push(tempRec[i].count);
+                }
             }
         }
 
