@@ -218,7 +218,6 @@ function addProgressBar() {
         }
     }
 
-
     for (let i = 0; i < todayData.length; i++) {
         todayCount.push(todayData[i].number);
         todayColor.push(todayData[i].activityColor);
