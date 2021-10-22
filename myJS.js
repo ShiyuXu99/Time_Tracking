@@ -4,8 +4,8 @@ const taskContainer = document.getElementById('taskContainer');
 let colorList = localStorage.getItem('colorList')
     ? JSON.parse(localStorage.getItem('colorList'))
     : ['#c1cbd7', '#b5c4b1', '#e0cdcf', '#8696a7',
-        '#a27e7e', '#7b8b6f', '#c9c0d3',
-        '#939391', '#7a7281', '#faead3',
+        '#7b8b6f', '#c9c0d3','#7a7281','#a27e7e',
+        '#939391', '#faead3',
         "#9ca8b8"
     ];
 
